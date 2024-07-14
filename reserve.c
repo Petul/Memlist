@@ -10,8 +10,6 @@ void	*reserve(size_t bytes)
 	t_list	**memlist;
 	t_list	*n;
 	void	*mem;
-	if (bytes < 0)
-		return (NULL);
 
 	memlist = get_memlist();
 	if (!memlist)
@@ -23,5 +21,31 @@ void	*reserve(size_t bytes)
 	if (!n)
 		return (NULL);
 	ft_lstadd_front(memlist, n);
+	return (mem);
+}
+
+/**
+ * @brief Allocates bytes meory, initializes it to 0 and adds it to the
+ * beginning of the memlist
+ *
+ * @param n number of elements to allocate
+ * @param size size of each element
+ */
+void	*creserve(size_t n, size_t size)
+{
+	t_list	**memlist;
+	t_list	*newlist;
+	void	*mem;
+
+	memlist = get_memlist();
+	if (!memlist)
+		return (NULL);
+	mem = calloc(n, size);
+	if (!mem)
+		return (NULL);
+	newlist = ft_lstnew(mem);
+	if (!n)
+		return (NULL);
+	ft_lstadd_front(memlist, newlist);
 	return (mem);
 }

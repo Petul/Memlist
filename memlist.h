@@ -6,6 +6,7 @@
 t_list	**get_memlist(void);
 void	release_all(void);
 void	*reserve(size_t bytes);
+void	*creserve(size_t n, size_t size);
 void	release(void *mem);
 
 #endif
